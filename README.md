@@ -1,0 +1,13 @@
+# GROUNDED EO: Data-driven Sentinel-2 LAI and FAPAR retrieval using Gaussian processes trained with extensive fiducial reference measurements
+
+This repository contains the retrieval algorithm developed under the <a href='https://eo4society.esa.int/projects/grounded-eo/'>Ground Reference Observations Underlying Novel Decametric Vegetation Data Products from Earth Observation (GROUNDED EO) project</a>, which was initiated within the context of the <a href='https://eo4society.esa.int/lpf/luke-brown/'>European Space Agency’s Living Planet Fellowship programme</a>.
+
+The algorithm adopts an empirical data-driven approach for retrieval of <a href='https://gcos.wmo.int/site/global-climate-observing-system-gcos/essential-climate-variables/leaf-area-index'>leaf area index (LAI)</a> and the <a href='https://gcos.wmo.int/site/global-climate-observing-system-gcos/essential-climate-variables/fraction-of-absorbed-photosynthetically-active-radiation-fapar'>fraction of absorbed photosynthetically active radiation (FAPAR)</a> from <a href='https://sentiwiki.copernicus.eu/web/s2-mission'>Sentinel-2</a> data. It makes use of Gaussian processes, trained with an extensive database of fiducial reference measurements (i.e. the GROUNDED EO database).
+
+Code to apply the algorithm to <a href='https://documentation.dataspace.copernicus.eu/Data/SentinelMissions/Sentinel2.html#sentinel-2-level-2a-surface-reflectance'>Sentinel-2 L2A surface reflectance</a> subsets is provided in the `retrieve.py` file. Subsets should be in GeoTIFF format, consisting of 17 bands (B1, B2, B3, B4, B5, B6, B7, B8, B8A, B9, B11, B12, SCL, VZA, VAA, SZA, SAA). An example subset in the correct format is provided in the `example_data` folder. For the selected biophysical variable, the code will output a two-band GeoTIFF containing the retrieved value and its uncertainty to the same folder.
+
+Note that the `scale_factor` parameter will need to be adjusted if you are applying the algorithm to data from 25th January 2022 onwards (i.e. processing baseline (PB) ≥ 04.00).
+
+More detailed description and validation of the algorithm is provided in the associated <i>Remote Sensing of Environment</i> paper. <b>Please cite the paper in any work making use of the algorithm:</b>
+
+Brown, L.A., Fernandes, R., Verrelst, J., Morris, H., Djamai, N., Reyez-Muñoz, P., D.Kovács, D., Meier, C. GROUNDED EO: Data-driven Sentinel-2 LAI and FAPAR retrieval using Gaussian processes trained with extensive fiducial reference measurements, <i>Remote Sens. Environ.</i>
